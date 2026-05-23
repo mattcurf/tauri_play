@@ -16,6 +16,7 @@ jobs:
             bundles: app,dmg
             artifact-name: macos-artifacts
             artifact-path: |
+              src-tauri/target/release/bundle/README.txt
               src-tauri/target/release/bundle/macos/
               src-tauri/target/release/bundle/dmg/
           - platform: windows-latest
@@ -46,6 +47,34 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: --bundles ${{ matrix.bundles }}
+
+      - name: Add macOS artifact README
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          cat > src-tauri/target/release/bundle/README.txt <<'EOF'
+          Tauri Tank Demo - macOS artifact
+
+          This app is ad-hoc signed for local testing, but it is not Apple notarized.
+          macOS may still report that it is "damaged" or cannot be opened after download.
+
+          If you trust this CI artifact, clear quarantine for just this app:
+
+            APP="$HOME/Downloads/Tauri Tank Demo.app"
+            xattr -dr com.apple.quarantine "$APP"
+            open "$APP"
+
+          If the app came from a GitHub Actions artifact ZIP and still will not open,
+          repair executable permissions and refresh the ad-hoc signature first:
+
+            APP="$HOME/Downloads/Tauri Tank Demo.app"
+            chmod +x "$APP/Contents/MacOS/tauri-tank-demo"
+            codesign --force --deep --sign - "$APP"
+            xattr -dr com.apple.quarantine "$APP"
+            open "$APP"
+
+          Avoid `sudo spctl --master-disable`; it disables Gatekeeper globally.
+          EOF
 
       - name: Upload desktop artifacts
         uses: actions/upload-artifact@v4

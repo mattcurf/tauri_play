@@ -93,7 +93,31 @@ sudo pacman -S --needed \
 npm run tauri build
 ```
 
-Tauri builds host-native unsigned artifacts: `.app`/`.dmg` on macOS, `.msi`/`.exe` on Windows, and `.deb`/`.AppImage`/`.rpm` on Linux. Cross-compilation is not used.
+Tauri builds host-native artifacts: `.app`/`.dmg` on macOS, `.msi`/`.exe` on Windows, and `.deb`/`.AppImage`/`.rpm` on Linux. Cross-compilation is not used.
+
+On macOS the app bundle is ad-hoc signed so locally built `.app` bundles can launch without the “damaged” invalid-signature error. It is not notarized; for distribution outside your machine, sign with a Developer ID certificate and notarize the build.
+
+### macOS Gatekeeper troubleshooting
+
+If you trust a locally built or CI-downloaded app and macOS still reports that it is damaged or cannot be opened, clear the quarantine attribute for just that app:
+
+```bash
+APP="/Applications/Tauri Tank Demo.app"
+xattr -dr com.apple.quarantine "$APP"
+open "$APP"
+```
+
+For an app downloaded from a GitHub Actions artifact, also repair executable permissions and refresh the ad-hoc signature if needed:
+
+```bash
+APP="$HOME/Downloads/Tauri Tank Demo.app"
+chmod +x "$APP/Contents/MacOS/tauri-tank-demo"
+codesign --force --deep --sign - "$APP"
+xattr -dr com.apple.quarantine "$APP"
+open "$APP"
+```
+
+Avoid `sudo spctl --master-disable`; it disables Gatekeeper globally. Prefer clearing quarantine only on an app you trust.
 
 ## Local checks
 
