@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+
+# Node / Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Rust / Tauri build output
+src-tauri/target/
+src-tauri/.tauri/
+
+# Signing credentials and packaged certificates
+*.key
+*.pem
+*.p12
+*.pfx
+*.mobileprovision
