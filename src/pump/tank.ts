@@ -262,12 +262,8 @@ export function createTankModel(): TankModel {
     group.add(ring);
   }
 
-  function setHandle(handle: THREE.Mesh, open: boolean, valve: 'inlet' | 'outlet'): void {
-    if (valve === 'inlet') {
-      handle.rotation.y = open ? 0 : Math.PI / 2;
-    } else {
-      handle.rotation.x = open ? Math.PI / 2 : 0;
-    }
+  function setHandle(handle: THREE.Mesh, open: boolean): void {
+    handle.rotation.y = open ? 0 : Math.PI / 2;
     (handle.material as THREE.MeshStandardMaterial).color.set(open ? 0x639922 : 0xa32d2d);
   }
 
@@ -278,8 +274,8 @@ export function createTankModel(): TankModel {
       liquid.scale.y = h;
       liquid.position.y = TANK_BASE_Y + 0.05 + h / 2;
       liquidMaterial.opacity = 0.82 + Math.sin(performance.now() / 600) * 0.04;
-      setHandle(inletHandle, controls.inletOpen, 'inlet');
-      setHandle(outletHandle, controls.outletOpen, 'outlet');
+      setHandle(inletHandle, controls.inletOpen);
+      setHandle(outletHandle, controls.outletOpen);
     },
   };
 }
