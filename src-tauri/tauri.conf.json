@@ -12,11 +12,11 @@
   "app": {
     "windows": [
       {
-        "title": "SCADA Storage Tank — TK-101",
+        "title": "SCADA Process Visualizer",
         "width": 920,
-        "height": 760,
+        "height": 590,
         "minWidth": 720,
-        "minHeight": 620
+        "minHeight": 560
       }
     ],
     "security": {

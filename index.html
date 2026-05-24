@@ -3,11 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SCADA Storage Tank — TK-101</title>
+    <title>SCADA Process Visualizer — TK-101 Tank</title>
   </head>
   <body>
     <div class="app">
-      <h1>SCADA Storage Tank — TK-101</h1>
+      <div class="app-header">
+        <h1 id="app-title">SCADA Process Visualizer — TK-101 Tank</h1>
+        <label class="visualization-picker">
+          <span>Visualization</span>
+          <select id="visualization-select">
+            <option value="tank">Tank</option>
+            <option value="pump">Pump</option>
+          </select>
+        </label>
+      </div>
       <div class="grid">
         <div id="tank-viewport"></div>
         <div id="controls-root" class="controls"></div>
