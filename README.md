@@ -1,5 +1,7 @@
 # Tauri Tank Demo
 
+![Tauri Tank Demo showing the TK-101 tank visualization](docs/tank-demo.png)
+
 [![Build](https://github.com/mattcurf/tauri-play/actions/workflows/build.yml/badge.svg)](https://github.com/mattcurf/tauri-play/actions/workflows/build.yml)
 
 A Tauri 2 desktop app hosting a Vite, TypeScript, and Three.js SCADA storage tank simulation.
