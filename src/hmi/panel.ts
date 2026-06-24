@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import type { PumpControls, PumpTelemetry, PumpStatus } from '../sim/process';
 import type { TankControls, TankTelemetry, TankStatus } from '../sim/tank';
 

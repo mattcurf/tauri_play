@@ -2,12 +2,16 @@
   "name": "tauri-tank-demo",
   "private": true,
   "version": "0.1.0",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 1420",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri"
+  },
+  "overrides": {
+    "esbuild": "^0.28.0"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",

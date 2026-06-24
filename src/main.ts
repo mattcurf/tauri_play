@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import './styles.css';
 import { createPumpHmiPanel, createTankHmiPanel } from './hmi/panel';
 import { createPumpScene, createTankScene, type VisualizationScene } from './pump/scene';

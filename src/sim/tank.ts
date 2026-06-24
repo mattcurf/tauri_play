@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 export type TankStatus = 'NORMAL' | 'HI ALARM' | 'HI-HI ALARM' | 'LO ALARM' | 'LO-LO ALARM';
 
 export interface TankTelemetry {
